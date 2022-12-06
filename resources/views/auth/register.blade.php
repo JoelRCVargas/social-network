@@ -53,69 +53,20 @@
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="**********">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label>{{ __('Token de invitado') }}</label>
+                  <div class="input-group"><span class="input-group-text"></span>
+                    <input id="token" type="text" class="form-control @error('token') is-invalid @enderror" name="token" value="{{ $token }}">
+                                @error('token')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                  </div>
+                </div>
                 <div class="login-social-title">                
                   <h5>Datos administrativos</h5>
                 </div>
-                <div class="row">
-                        <div class="col-sm-6">
-                          <div class="card">
-                            <div class="media p-20">
-                              <div class="radio radio-primary me-3">
-                                <input id="radio1" type="radio" name="adm" value="1" checked>
-                                <label for="radio1"></label>
-                              </div>
-                              <div class="media-body">
-                                <h6 class="mt-0 mega-title-badge">Individual<span class="badge badge-primary pull-right digits">1</span></h6>
-                                <p>Administra tu red propia.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="card">
-                            <div class="media p-20">
-                              <div class="radio radio-secondary me-3">
-                                <input id="radio2" type="radio" name="adm" value="2" >
-                                <label for="radio2"></label>
-                              </div>
-                              <div class="media-body">
-                                <h6 class="mt-0 mega-title-badge">Colaborativo<span class="badge badge-secondary pull-right digits">2</span></h6>
-                                <p>Administra tu red y 20 Sub-redes.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                     
-                      
-                        <!--<div class="col-sm-6">
-                          <div class="card">
-                            <div class="media p-20">
-                              <div class="radio radio-primary me-3">
-                                <input id="radio3" type="radio" name="adm" value="3">
-                                <label for="radio3"></label>
-                              </div>
-                              <div class="media-body">
-                                <h6 class="mt-0 mega-title-badge">Colaborativo Plus<span class="badge badge-primary pull-right digits">3</span></h6>
-                                <p>Administra tu red y 50 Sub-redes.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-sm-6">
-                          <div class="card">
-                            <div class="media p-20">
-                              <div class="radio radio-secondary me-3">
-                                <input id="radio4" type="radio" name="adm" value="4">
-                                <label for="radio4"></label>
-                              </div>
-                              <div class="media-body">
-                                <h6 class="mt-0 mega-title-badge">Colaborativo Pro<span class="badge badge-secondary pull-right digits">4</span></h6>
-                                <p>Administra tu red y Sub-redes ilimitadas.</p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>-->
-                       </div>
                 <div class="form-group">
                   
                     <label class="text-muted" for="checkbox1">Al registrarte aceptas nuestras <span>Politicas de privacidad de datos</span></label>

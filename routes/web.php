@@ -18,4 +18,9 @@ Route::get('/', function () {
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+//referrals routes
+Route::get('/referrals', [App\Http\Controllers\ReferredUserController::class, 'index'])->name('referrals');
+Route::get('/referrals/list', [App\Http\Controllers\ReferredUserController::class, 'listReferrals'])->name('referrals.list');
+Route::get('/referrals/link', [App\Http\Controllers\ReferralLinkController::class, 'index'])->name('referrals.link');
+
 Auth::routes();

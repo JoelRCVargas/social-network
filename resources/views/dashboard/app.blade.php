@@ -31,6 +31,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/date-picker.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/prism.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/vector-map.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/custom-2.css')}}">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.css')}}">
@@ -39,6 +40,8 @@
     <link id="color" rel="stylesheet" href="{{asset('assets/css/color-6.css')}}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head> 
   <body>
     <!-- Loader starts-->
@@ -142,6 +145,13 @@
                       <li><a href="">Lista de usuarios</a></li>
                     </ul>
                   </li>
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h6>Referidos</h6>
+                    </div>
+                  </li>
+                  <li><a href="{{route('referrals')}}" class="nav-link">Mis referidos</a></li>
+                  <li><a href="{{route('referrals.link')}}" class="nav-link">Mi link</a></li>
                 </ul>
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -151,7 +161,7 @@
         <!-- Page Sidebar Ends-->
         <div class="page-body">
           <!--Yield content-->
-          @yield('content')
+          @yield('content-dashboard')
           <!--End tield content-->
         </div>
         <!-- footer start-->
@@ -169,6 +179,7 @@
         </footer>
       </div>
     </div>
+    
     <!-- latest jquery-->
     <script src="{{asset('assets/js/jquery-3.5.1.min.js')}}"></script>
     <!-- feather icon js-->
@@ -211,8 +222,11 @@
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{asset('assets/js/script.js')}}"></script>
-    
     <!-- login js-->
     <!-- Plugin used-->
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <!-- Scripts js -->
+    @yield('scripts')
   </body>
 </html>
