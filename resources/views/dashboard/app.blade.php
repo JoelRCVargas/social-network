@@ -39,6 +39,9 @@
     <link id="color" rel="stylesheet" href="{{asset('assets/css/color-6.css')}}" media="screen">
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
+     <!-- Fanpage css-->
+     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/layouts.css')}}">
+
   </head> 
   <body>
     <!-- Loader starts-->
@@ -54,8 +57,8 @@
       <div class="page-main-header">
         <div class="main-header-right row m-0">
           <div class="main-header-left">
-            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="assets/images/logo/logo.png" alt=""></a></div>
-            <div class="dark-logo-wrapper"><a href="index.html"><img class="img-fluid" src="assets/images/logo/dark-logo.png" alt=""></a></div>
+            <div class="logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{asset('assets/images/logo/logo.png')}}" alt=""></a></div>
+            <div class="dark-logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{asset('assets/images/logo/dark-logo.png')}}" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
           <div class="left-menu-header col">
@@ -77,7 +80,7 @@
               <li class="onhover-dropdown"><i data-feather="message-square"></i>
                 <ul class="chat-dropdown onhover-show-div">
                   <li>
-                    <div class="media"><img class="img-fluid rounded-circle me-3" src="assets/images/user/4.jpg" alt="">
+                    <div class="media"><img class="img-fluid rounded-circle me-3" src="{{asset('assets/images/user/4.jpg')}}" alt="">
                       <div class="media-body"><span>Ain Chavez</span>
                         <p class="f-12 light-font">Lorem Ipsum is simply dummy...</p>
                       </div>
@@ -109,7 +112,7 @@
       <div class="page-body-wrapper sidebar-icon">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle" src="assets/images/dashboard/1.png" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle" src="{{asset('assets/images/dashboard/1.png')}}" alt="">
             <a href="#user">
               <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6></a>
             <p class="mb-0 font-roboto">Usuario Gestor de Campaña</p>
@@ -132,6 +135,12 @@
                       <li><a href="">Lista de usuarios</a></li>
                     </ul>
                   </li>
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>fanpage</span></a>
+                    <ul class="nav-submenu menu-content">
+                    <li><a href="">Lista de fanpage</a></li>
+                      <li><a href="{{route('admin.formpage.create')}}">crear fanpage</a></li>                    
+                    </ul>
+                  </li>
                   <li class="sidebar-main-title">
                     <div>
                       <h6>Analiticas</h6>
@@ -151,7 +160,7 @@
         <!-- Page Sidebar Ends-->
         <div class="page-body">
           <!--Yield content-->
-          @yield('content')
+          @yield('content-dashboard')
           <!--End tield content-->
         </div>
         <!-- footer start-->
@@ -209,10 +218,16 @@
     <script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
     <script src="{{asset('assets/js/datepicker/date-picker/datepicker.custom.js')}}"></script>
     <!-- Plugins JS Ends-->
+    <!-- cdn table-->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- cdn confirmation message delete-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Theme js-->
     <script src="{{asset('assets/js/script.js')}}"></script>
     
     <!-- login js-->
     <!-- Plugin used-->
+    <!-- Ajax -->
+    @yield('scripts')
   </body>
 </html>
