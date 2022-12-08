@@ -11,6 +11,8 @@ class ReferredUser extends Model
 
     protected $fillable = [
         'referral_token',
+        'id_referred_user',
+        'id_invited_by',
         'id_user'
     ];
 }

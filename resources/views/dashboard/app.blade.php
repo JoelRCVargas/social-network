@@ -42,6 +42,9 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <!-- Toaster -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    @yield('styles')
   </head> 
   <body>
     <!-- Loader starts-->
@@ -112,7 +115,7 @@
       <div class="page-body-wrapper sidebar-icon">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle" src="{{asset('assets/images/dashboard/1.png')}}" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle m-auto" src="{{asset('assets/images/dashboard/1.png')}}" alt="">
             <a href="#user">
               <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6></a>
             <p class="mb-0 font-roboto">Usuario Gestor de Campaña</p>
@@ -127,30 +130,22 @@
                   </li>
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>General             </h6>
+                      <h6>Admistrar</h6>
                     </div>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Usuarios</span></a>
+    
+                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Fanpage</span></a>
                     <ul class="nav-submenu menu-content">
-                      <li><a href="">Lista de usuarios</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>fanpage</span></a>
-                    <ul class="nav-submenu menu-content">
-                    <li><a href="">Lista de fanpage</a></li>
-                      <li><a href="{{route('admin.formpage.create')}}">crear fanpage</a></li>                    
+                    <li><a href="{{route('admin.formpage.create')}}">Crear nuevo fanpage</a></li>                    
+                      <li><a href="">Lista de fanpages</a></li>
                     </ul>
                   </li>
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>Analiticas</h6>
+                      <h6>Fanpages que sigues</h6>
                     </div>
                   </li>
-                  <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Usuarios</span></a>
-                    <ul class="nav-submenu menu-content">
-                      <li><a href="">Lista de usuarios</a></li>
-                    </ul>
-                  </li>
+                    <li><a href="{{route('user.fanpage')}}" class="nav-link">Siguiendo</a></li>
                   <li class="sidebar-main-title">
                     <div>
                       <h6>Referidos</h6>
@@ -236,6 +231,8 @@
     <!-- Plugin used-->
     <!-- DataTables -->
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <!-- Toaster -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <!-- Scripts js -->
     @yield('scripts')
   </body>

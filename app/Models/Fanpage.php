@@ -15,7 +15,10 @@ class Fanpage extends Model
         'description',
         'address',
         'website',
-        'email'
+        'email',
+        'name',
+        'token',
+        'link'
     ];
     
 }

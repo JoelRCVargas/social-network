@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fanpage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class FormFanpageController extends Controller
 {
@@ -24,6 +25,8 @@ class FormFanpageController extends Controller
             $profilename = '_'.rand().'_'.$profile->getClientOriginalName();
             $profile->move(public_path('assets/fanpage'), $profilename);
 
+            $token = Str::uuid()->toString();
+
             $form_data=array(
                 'description' => $request->description,
                 'address'=>$request->address,
@@ -31,6 +34,9 @@ class FormFanpageController extends Controller
                 'email'=>$request->email,
                 'cover'=>$covername,
                 'profile' => $profilename,
+                'name' => $request->name,
+                'token' => $token,
+                'link' => '/register/?token='.$token.'&referred='.Auth::id().'&invitedby=',
                 'id_user' => Auth::id()
             ); 
         } else{

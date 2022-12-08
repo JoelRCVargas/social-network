@@ -72,12 +72,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'token' => Str::uuid()->toString(),
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($data['password'])
         ]);
         //Create ref
         ReferredUser::create([
             'referral_token' => $data['token'],
-            'id_user' => $user->id
+            'id_referred_user' => $data['id_referred_user'],
+            'id_user' => $user->id,
+            'id_invited_by' => $data['id_invited_by']
         ]);
         return  $user;
     }

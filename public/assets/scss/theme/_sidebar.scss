@@ -704,7 +704,9 @@
                   }
                   .nav-link {
                     border-radius: 10px;
-                    transition: all 0.5s ease;                    
+                    transition: all 0.5s ease;
+                    display:flex;
+                    align-items: center;                    
                     &.active,&:hover {
                       background-color: $primary-color;
                       color: lighten($primary-color, 60%);

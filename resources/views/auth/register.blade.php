@@ -10,6 +10,8 @@
             <div style="display: block; height: 100%;" class="login-card">
                 <form method="POST"  class="theme-form login-form" action="{{ route('register') }}">
                         @csrf
+                <input type="hidden" name="id_referred_user" value="{{$referred}}">
+                <input type="hidden" name="id_invited_by" value="{{$invitedby}}">
                 <h4>{{ __('Register') }}</h4>
                 <h6>Ingresa tus datos personales para crear una cuenta</h6>
                 <div class="form-group">
