@@ -28,7 +28,8 @@
         <label for="email">Email</label>
         <input type="email" class="form-control" id="email" name="email">
     </div>
-    <button type="submit" class="btn btn-primary btnSubmit">Guardar</button>
+    
+    <input type ='submit' class="btn btn-primary btnSubmit"/>
     </form>
   </div>
 @endsection

@@ -15,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
     <!-- Font Awesome-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/fontawesome.css')}}">
     <!-- ico-font-->
@@ -42,6 +43,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+     <!-- layouts and fontawesome -->
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/layouts.css')}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    
+
   </head> 
   <body>
     <!-- Loader starts-->
@@ -137,7 +144,7 @@
                   </li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>fanpage</span></a>
                     <ul class="nav-submenu menu-content">
-                    <li><a href="">Lista de fanpage</a></li>
+                    <li><a href="{{route('admin.fanpagelist')}}">Lista de fanpage</a></li>
                       <li><a href="{{route('admin.formpage.create')}}">crear fanpage</a></li>                    
                     </ul>
                   </li>
@@ -225,6 +232,7 @@
     <script src="{{asset('assets/js/datepicker/date-picker/datepicker.js')}}"></script>
     <script src="{{asset('assets/js/datepicker/date-picker/datepicker.en.js')}}"></script>
     <script src="{{asset('assets/js/datepicker/date-picker/datepicker.custom.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
     <!-- Plugins JS Ends-->
     <!-- cdn table-->
     <script src="https://cdn.tailwindcss.com"></script>
