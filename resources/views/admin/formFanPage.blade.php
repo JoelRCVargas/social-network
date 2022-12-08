@@ -70,7 +70,7 @@
                 complete: function() {
                 },
                 success: function(response) {
-                    toastr.error(response.success);
+                    toastr.success(response.success);
                 },
                 error: function(response) {
                     toastr.error(response.error);
@@ -82,4 +82,6 @@
         }
     });
   </script>
+
+  <!-- Limpiar formulario -->
 @endsection

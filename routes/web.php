@@ -31,6 +31,22 @@ Route::post('/admin/fanpage/follower/delete', [App\Http\Controllers\FanpageContr
 Route::get('/user/fanpage', [App\Http\Controllers\UserFanPageListController::class, 'index'])->name('user.fanpage');
 Route::get('/user/fanpage/list', [App\Http\Controllers\UserFanPageListController::class, 'listFanpagesByReferral'])->name('user.fanpage.list');
 
+//Routers fanpagelist
+Route::get('/admin/fanpage/list', [App\Http\Controllers\FormFanpageController::class, 'fanpagelist'])->name('admin.fanpagelist');
+Route::get('/admin/fanpage/listar', [App\Http\Controllers\FormFanpageController::class, 'listFanPage'])->name('admin.fanpage.list');
+Route::post('/admin/fanpage/listar', [App\Http\Controllers\FormFanpageController::class, 'prepareFanpageById'])->name('admin.fanpage.prepare');
+Route::post('/admin/fanpage/update', [App\Http\Controllers\FormFanpageController::class, 'updateFanpage'])->name('admin.fanpage.update');
+Route::get('/admin/fanpage/delete', [App\Http\Controllers\FormFanpageController::class, 'deleteFanpage'])->name('admin.fanpage.delete');
+
+//Routers publications
+Route::get('/admin/publication/fanpage', [App\Http\Controllers\PublicationController::class, 'index'])->name('admin.publication');
+Route::post('/admin/publication/fanpage', [App\Http\Controllers\PublicationController::class, 'createPublication'])->name('admin.publication.create');
+Route::get('/admin/publication/listar', [App\Http\Controllers\PublicationController::class, 'listPublications'])->name('admin.publication.list');
+Route::post('/admin/publication/listar', [App\Http\Controllers\PublicationController::class, 'preparePublicationById'])->name('admin.publication.prepare');
+Route::post('/admin/publication/update', [App\Http\Controllers\PublicationController::class, 'updatePublication'])->name('admin.publication.update');
+Route::get('/admin/publication/delete', [App\Http\Controllers\PublicationController::class, 'deletePublication'])->name('admin.publication.delete');
+
+
 //referrals routes
 Route::get('/referrals', [App\Http\Controllers\ReferredUserController::class, 'index'])->name('referrals');
 Route::get('/referrals/list', [App\Http\Controllers\ReferredUserController::class, 'listReferrals'])->name('referrals.list');
