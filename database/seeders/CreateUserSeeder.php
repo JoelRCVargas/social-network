@@ -24,7 +24,7 @@ class CreateUserSeeder extends Seeder
                'role'=> 0,
                'password'=> Hash::make('123456'),
                'token'=> Str::uuid()->toString(),
-               'photo' => public_path('assets/users/1.png')
+               'photo' => '1.png'
             ],
             [
                'name'=>'Admin',
@@ -32,7 +32,7 @@ class CreateUserSeeder extends Seeder
                'role'=> 1,
                'password'=> Hash::make('123456'),
                'token'=> Str::uuid()->toString(),
-               'photo' => public_path('assets/users/1.png')
+               'photo' => '1.png'
             ],
             [
                'name'=>'SuperAdmin',
@@ -40,7 +40,7 @@ class CreateUserSeeder extends Seeder
                'role'=> 2,
                'password'=> Hash::make('123456'),
                'token'=> Str::uuid()->toString(),
-               'photo' => public_path('assets/users/1.png')
+               'photo' => '1.png'
             ],
             
         ];

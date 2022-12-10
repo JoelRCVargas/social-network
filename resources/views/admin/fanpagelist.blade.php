@@ -52,7 +52,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-6">
                     <div class="title-content mb-3">
-                        <h3 class="text-black">Mis fanpages</h3>
+                        <h3 class="text-black">Mis fanpages </h3>
                     </div>
                     <div class="card card-stats mb-2 mb-xl-0">
                         <div class="card-body">

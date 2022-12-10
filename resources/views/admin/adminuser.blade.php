@@ -33,15 +33,16 @@
         <form id="frm_pwd" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="password">contraseña antigua</label>
+                        <label for="password">Contraseña antigua</label>
                         <input type="password" class="form-control" id="old_password" name="old_password"   value="">
                     </div>
                     <div class="form-group">
-                        <label for="password">nueva contraseña</label>
+                        <label for="password">Nueva contraseña</label>
                         <input type="password" class="form-control" id="new_password" name="new_password"  alt="strongPass" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value="">
+                        <p><small>*La contraseña debe contener mas de 6 caracteres y al menos una mayuscula y numeros</small></p>
                     </div>
                     <div class="form-group">
-                        <label for="password">confirmar nueva contraseña</label>
+                        <label for="password">Confirmar nueva contraseña</label>
                         <input type="password" class="form-control" id="r_password" name="r_password"  alt="strongPass"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" value="">
                     </div>
                     

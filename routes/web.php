@@ -19,7 +19,8 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/user/listar', [App\Http\Controllers\HomeController::class, 'listUser'])->name('home.user.list');
 Route::get('/home/user/listarf', [App\Http\Controllers\HomeController::class, 'listFanpage'])->name('home.user.listf');
-
+Route::get('/admin/superadmin', [App\Http\Controllers\HomeController::class, 'superAdmin'])->name('superadmin');
+Route::get('/admin/fanpage/superadlist', [App\Http\Controllers\HomeController::class, 'listFanPage'])->name('admin.fanpage.superadlist'); 
 //Routers fanpage
 Route::get('/fanpage/{id}/{name}', [App\Http\Controllers\FanpageController::class, 'index'])->name('admin.fanpage');
 Route::get('/admin/formFanPage', [App\Http\Controllers\FormFanpageController::class, 'index'])->name('admin.formFanPage');
