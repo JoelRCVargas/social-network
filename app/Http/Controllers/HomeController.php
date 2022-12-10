@@ -35,6 +35,10 @@ class HomeController extends Controller
         return view('home', ['users'=>$users,'ref'=>$ref,'publications'=>$publications,'fanpage'=>$fanpage]);
     }
 
+    public function superAdmin()
+    {
+        return view('admin.superadmin');
+        }
     public function listUser(Request $request){
         return datatables()->of(
             DB::table('users')

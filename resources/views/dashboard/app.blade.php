@@ -160,7 +160,8 @@
                     </div>
                   </li>
                     <li><a href="{{route('admin.formpage.create')}}" class="nav-link">Crear nuevo fanpage</a></li>
-                    <li><a href="{{route('admin.fanpagelist')}}" class="nav-link">Lista de fanpages</a></li>
+                    <li><a href="{{route('admin.fanpagelist')}}" class="nav-link">Mis fanpages</a></li>
+                    <li><a href="{{route('superadmin')}}" class="nav-link">Lista de fanpages</a></li>
                   @endif
                   @if(Auth::user()->role ==2)
                   <li class="sidebar-main-title">

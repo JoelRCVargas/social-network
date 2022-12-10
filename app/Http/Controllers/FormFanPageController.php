@@ -18,28 +18,8 @@ class FormFanpageController extends Controller
         
         return view('admin.fanpagelist');
     }
-    public function registerFanpage(Request $request){
-
-        /*Insert*/
-        $cover=$request->file('cover');
-        if($request->hasFile('cover')){
-            $new_name = '_'.rand().'_'.$cover->getClientOriginalName();
-            $photo->move(base_path('assets/fanpage'),$new_name);
-            $form_data=array(
-                'description' => $request->description,
-                'direction' => $request->direction,
-                'website'=>$request->website,
-                'email'=>$request->email,
-                'cover'=>$cover,
-                'profile'=>$profile
-            ); 
-        } else{
-            return response()->json(['error'=>'An error occurred while entering the data.']);
-        }
-        Product::create($form_data);
-        return response()->json(['success'=>'Data Added successfully.']);
-    }
-
+  
+ 
     public function create(Request $request){
         /*Insert*/
         $cover=$request->file('cover');
