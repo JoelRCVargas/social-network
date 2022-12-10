@@ -78,12 +78,14 @@ class FormFanpageController extends Controller
             ->where('id_user','=',Auth::id())
             ->get([
                     'id as id',
+                    'name as name',
                     'cover as cover',
                     'profile as profile',
                     'description as description',
                     'address as address',
                     'website as website',
-                    'email as email'
+                    'email as email',
+                    'link as link'
                     
                 ])
         )->toJson();

@@ -70,15 +70,18 @@
                                     <table id="table" class="table align-items-center table-flush" >
                                         <thead class="thead-light">
                                             <tr>
-                                                <th scope="col">id</th>
+                                                <th scope="col">Id</th>
+                                                <th scope="col">Nombre</th>
                                                 <th scope="col">Portada</th>
                                                 <th scope="col">Perfil</th>
-                                                <th scope="col">descripcion</th>
-                                                <th scope="col">direccion</th>
-                                                <th scope="col">sitio web</th>
-                                                <th scope="col">email</th>
-                                                <th scope="col">opciones</th>
-                                                <th scope="col">publicaciones</th>
+                                                <th scope="col">Descripción</th>
+                                                <th scope="col">Dirección</th>
+                                                <th scope="col">Sitio web</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Publicaciones</th>
+                                                <th scope="col">Compartir</th>
+                                                <th scope="col">Ver</th>
+                                                <th scope="col">Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -126,6 +129,7 @@
                 },
                 "columns": [
                     { data: "id" },
+                    { data: "name" },
                     { data: "cover",
                         render:function(data,type,full,meta){
                             return "<div class='container-img' style='width: 100px;'><img src='{{URL::to('/')}}/assets/fanpage/"+data+"' width='70' class='thumbnail'><div/>";
@@ -138,27 +142,49 @@
                         },
                         roderable:false
                     },
-                    { data: "description"},
-                    { data: "address" },
+                    { data: "description",
+                        render:function(data,type,full,meta){
+                            return "<div class='description-table' style='width:120px'>"+data+"<div/>";
+                        },
+                        roderable:false
+                    },
+                    { data: "address",
+                        render:function(data,type,full,meta){
+                            return "<div class='description-table' style='width:120px'>"+data+"<div/>";
+                        },
+                        roderable:false 
+                    },
                     {data:'website'},
                     { data: 'email' },
+                    { data: "id",
+                        render:function(data,type,full,meta){
+                            return "<a class='btn btn-primary' href='{{URL::to('/')}}/admin/publication/fanpage?id="+data+"'>Publicaciones<a/>";
+                        },
+                        roderable:false
+                    },
+                    { data: "link",
+                        render:function(data,type,full,meta){
+                            return "<button type='button' url='{{URL::to('/')}}"+data+"{{Auth::id()}}"+"&nickname={{Auth::user()->name}}"+"' class='btn btn-primary shared'>Compartir</abutton>";
+                        },
+                        roderable:false
+                    },
+                    { data: "id",
+                        render:function(data,type,full,meta){
+                            return "<a class='btn btn-primary' target='_blank' href='{{URL::to('/')}}/fanpage/"+data+"/"+full.name+"'><i class='fa fa-eye'></a>";
+                        },
+                        roderable:false
+                    },
                     { data: "id",
                         render:function(data,type,full,meta){
                             return "<div class='description-table'>"+data+"<div/>";
                         },
                         roderable:false
                     },
-                    { data: "id",
-                        render:function(data,type,full,meta){
-                            return "<a class='btn btn-primary' href='{{URL::to('/')}}/admin/publication/fanpage?id="+data+"'>Publicaciones<a/>";
-                        },
-                        roderable:false
-                    }
                 ],
                     "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $(nRow).find('td:eq(7)').html('' +
+                        $(nRow).find('td:eq(11)').html('<div class="d-flex">' +
                             '<button type="button" class="edit btn btn-primary btn-sm" id="btnAdd"  data-toggle="modal" data-target="#modalEdit"><i class="fa fa-edit"></i></button>' +
-                            '<button type="button" class="delete btn btn-danger btn-sm m-lg-2" ><i class="fa fa-trash"></i></button>');
+                            '<button type="button" class="delete btn btn-danger btn-sm ml-2" ><i class="fa fa-trash"></i></button></div>');
                     }
             });
             return _table;
@@ -298,7 +324,19 @@
                 });
 
             });
-
+        $('#table').on( 'click', '.shared', function () {
+            var data = _list().row($(this).parents('tr')).data();
+            var link = '{{URL::to('/')}}' + data['link'] + '{{Auth::id()}}' + '&nickname=' + '{{Auth::user()->name}}';
+            var domParse = new DOMParser().parseFromString(link,"text/html");
+            var parseLink = domParse.documentElement.textContent;
+            //Copy
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(parseLink).select();
+            document.execCommand("copy");
+            $temp.remove();
+            toastr.success('Link copiado satisfactoriamente.');
+        });
     </script>}
     <!-- Limpiar formulario -->
 @endsection

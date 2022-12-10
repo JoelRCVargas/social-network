@@ -1,17 +1,25 @@
 @extends('dashboard.app')
 @section('content-dashboard')
-    <div class="container">+
-    <input type="hidden"  id="method" value="0">
-    <form id="frm_publication" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" id="id_publication" name="id" value="">
-        <input type="hidden" id="id_fanpage" name="id_fanpage" value="{{$id_fanpage}}">
-        <div class="form-group">
-            <label for="email">Description</label>
-            <textarea id="description" cols="30" rows="10" name="description"></textarea>
-        </div>    
-        <input type ='submit' class="btn btn-primary btnSubmit"/>
-        </form>
+    <div class="container">
+        <input type="hidden"  id="method" value="0">
+        <div class="title-content mb-3">
+            <h3 class="text-black">Ingresar publicación</h3>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="">
+                    <form id="frm_publication" enctype="multipart/form-data" class="mb-4">
+                        @csrf
+                        <input type="hidden" id="id_publication" name="id" value="">
+                        <input type="hidden" id="id_fanpage" name="id_fanpage" value="{{$id_fanpage}}">
+                        <div class="form-group">
+                            <textarea id="description" cols="30" rows="10" name="description"></textarea>
+                        </div>    
+                        <input type ='submit' class="btn btn-primary btnSubmit ml-auto d-block"/>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     
     <div class="container">
@@ -37,7 +45,7 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">id</th>
-                                                <th scope="col">image</th>
+                                                <!-- <th scope="col">image</th> -->
                                                 <th scope="col">descripcion</th>                                                                                         
                                                 <th scope="col">opciones</th>
                                            
@@ -153,12 +161,12 @@
                 },
                 "columns": [
                     { data: "id" },
-                    { data: "image",
-                        render:function(data,type,full,meta){
-                            return "<div class='container-img' style='max-width: 100px;'><img src={{URL::to('/')}}/assets/publication/"+data+" width='70' class='thumbnail'><div/>";
-                        },
-                        roderable:false
-                    },     
+                    // { data: "image",
+                    //     render:function(data,type,full,meta){
+                    //         return "<div class='container-img' style='max-width: 100px;'><img src={{URL::to('/')}}/assets/publication/"+data+" width='70' class='thumbnail'><div/>";
+                    //     },
+                    //     roderable:false
+                    // },     
                     { data: "description"},                  
                     { data: "id",
                         render:function(data,type,full,meta){
@@ -169,7 +177,7 @@
                            
                 ],
                     "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $(nRow).find('td:eq(3)').html('' +
+                        $(nRow).find('td:eq(2)').html('' +
                             '<button type="button" class="edit btn btn-primary btn-sm" id="btnAdd"  data-toggle="modal" data-target="#modalEdit"><i class="fa fa-edit"></i></button>' +
                             '<button type="button" class="delete btn btn-danger btn-sm m-lg-2" ><i class="fa fa-trash"></i></button>');
                     }
@@ -233,7 +241,8 @@
         function clearData(){
             $('#description').val('');
             $('#method').val('0'); 
-        }    
+        } 
+           
   </script>
 @endsection
 

@@ -85,7 +85,7 @@
                         },
                         { data: "id_fanpage",
                             render:function(data,type,full,meta){
-                                return "<a class='btn btn-primary' href='{{URL::to('/')}}/fanpage/"+data+"'>Ver pagina</a>";
+                                return "<a class='btn btn-primary' target='_blank' href='{{URL::to('/')}}/fanpage/"+data+"/"+full.name+"'>Ver pagina</a>";
                             },
                             roderable:false
                         }

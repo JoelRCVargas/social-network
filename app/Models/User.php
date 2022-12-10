@@ -25,6 +25,11 @@ class User extends Authenticatable
         'token'
     ];
 
+    public function comment(){
+        return $this->belongsTo('App\Models\Comment');
+    }
+
+    
     /**
      * The attributes that should be hidden for serialization.
      *

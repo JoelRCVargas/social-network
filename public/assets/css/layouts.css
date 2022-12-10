@@ -292,3 +292,66 @@ img {
     background-color: #f6f7f8;
     border-top-color: #e9eaed;
 }                                                     
+
+.card-commets{
+    padding: 0;
+    border-top: 1px solid #e6edef;
+    height: 0;
+    transition: all ease .5s;
+    overflow: hidden;
+}
+.card-commets.show{
+    height: auto;
+    transition: all ease-out .5s;
+    padding: 30px;
+}
+.card-commets input{
+    width: 100%;
+    padding: .5rem 1rem;
+    border: 1px solid #e6edef;
+    border-radius: 50px;
+    margin-bottom: 15px;
+}
+.card-commets .content {
+    width: 100%;
+    padding: .5rem 0;
+}
+.card-commets .content .description
+{
+    transition: all .5s ease;
+}
+.card-commets .content .description.focus {
+    border: 1px solid #e6edef;
+    padding: .5rem;
+    border-radius: 15px;
+    transition: all .5s ease;
+}
+.card-commets .content img{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.card-commets .content .comment-text{
+    width: 100%;
+}
+.card-commets .content .comment-text .name-user{
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.card-commets .options{
+    margin-left: 65px;
+    border-bottom: 1px solid #e6edef;
+    padding-bottom: .5rem;
+    margin-bottom: 1.5rem;
+    margin-top: -8px;
+    gap: 10px;
+}
+.card-commets .options p{
+    font-weight: bold;
+    font-size: .75rem;
+    cursor: pointer;
+}
+
+

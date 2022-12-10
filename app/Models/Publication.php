@@ -12,4 +12,14 @@ class Publication extends Model
     protected $fillable = [
         'id_fanpage','title','description','image','time'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Like');
+    }
 }

@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Routers fanpage
-Route::get('/fanpage/{id}', [App\Http\Controllers\FanpageController::class, 'index'])->name('admin.fanpage');
+Route::get('/fanpage/{id}/{name}', [App\Http\Controllers\FanpageController::class, 'index'])->name('admin.fanpage');
 Route::get('/admin/formFanPage', [App\Http\Controllers\FormFanpageController::class, 'index'])->name('admin.formFanPage');
 Route::post('/admin/formFanPage', [App\Http\Controllers\FormFanpageController::class, 'create'])->name('admin.formpage.create');
 Route::get('/admin/formFanPagePost', [App\Http\Controllers\formFanpagePostController::class, 'index'])->name('admin.formFanPagePost');
@@ -46,10 +46,17 @@ Route::post('/admin/publication/listar', [App\Http\Controllers\PublicationContro
 Route::post('/admin/publication/update', [App\Http\Controllers\PublicationController::class, 'updatePublication'])->name('admin.publication.update');
 Route::get('/admin/publication/delete', [App\Http\Controllers\PublicationController::class, 'deletePublication'])->name('admin.publication.delete');
 
-
 //referrals routes
 Route::get('/referrals', [App\Http\Controllers\ReferredUserController::class, 'index'])->name('referrals');
 Route::get('/referrals/list', [App\Http\Controllers\ReferredUserController::class, 'listReferrals'])->name('referrals.list');
 Route::get('/referrals/link', [App\Http\Controllers\ReferralLinkController::class, 'index'])->name('referrals.link');
+
+//Routers comments
+Route::post('/fanpage/comment/create', [App\Http\Controllers\FanpageController::class, 'registerCommentByPublication'])->name('comment.create');
+Route::post('/fanpage/comment/delete', [App\Http\Controllers\FanpageController::class, 'deleteComment'])->name('comment.delete');
+Route::post('/fanpage/comment/update', [App\Http\Controllers\FanpageController::class, 'updateComment'])->name('comment.update');
+
+//Routers Likes
+Route::post('/fanpage/like/create', [App\Http\Controllers\FanpageController::class, 'registerLike'])->name('like.create');
 
 Auth::routes();

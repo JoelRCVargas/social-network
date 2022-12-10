@@ -115,83 +115,73 @@
         <div class="col-md-8 col-xl-8 middle-wrapper">
             <div class="row">
                 <div class="col-md-12">
+                    @foreach($publications as $publication)
                     <div class="card rounded">
-                        <div class="card-header">
+                        <div class="card-header pb-0">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <img class="img-xs rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
                                     <div class="ml-2">
-                                        <p>Mike Popescu</p>
-                                        <p class="tx-11 text-muted">5 min ago</p>
-                                    </div>
-                                </div>
-                                <div class="dropdown">
-                                    <button class="btn p-0" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-horizontal icon-lg pb-3px">
-                                            <circle cx="12" cy="12" r="1"></circle>
-                                            <circle cx="19" cy="12" r="1"></circle>
-                                            <circle cx="5" cy="12" r="1"></circle>
-                                        </svg>
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton3">
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-meh icon-sm mr-2">
-                                                <circle cx="12" cy="12" r="10"></circle>
-                                                <line x1="8" y1="15" x2="16" y2="15"></line>
-                                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
-                                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
-                                            </svg> <span class="">Unfollow</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-up icon-sm mr-2">
-                                                <polyline points="10 9 15 4 20 9"></polyline>
-                                                <path d="M4 20h7a4 4 0 0 0 4-4V4"></path>
-                                            </svg> <span class="">Go to post</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share-2 icon-sm mr-2">
-                                                <circle cx="18" cy="5" r="3"></circle>
-                                                <circle cx="6" cy="12" r="3"></circle>
-                                                <circle cx="18" cy="19" r="3"></circle>
-                                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                                            </svg> <span class="">Share</span></a>
-                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-copy icon-sm mr-2">
-                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                            </svg> <span class="">Copy link</span></a>
+                                        <p>{{$fanpage->name}}</p>
+                                        <!-- <p class="tx-11 text-muted">5 min ago</p> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <p class="mb-3 tx-14">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        <div class="card-body ">
+                            <p class="tx-14">{{$publication->description}}</p>
                             <img class="img-fluid" src="../../../assets/images/sample2.jpg" alt="">
                         </div>
                         <div class="card-footer">
                             <div class="d-flex post-actions">
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4"
+                                onclick="registerLike({{$publication->id}},'#like_{{$publication->id}}')" id="like_{{$publication->id}}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart icon-md">
                                         <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                     </svg>
-                                    <p class="d-none d-md-block ml-2">Like</p>
+                                    <p class="d-none d-md-block ml-2">{{ count($publication->likes)}}</p>
                                 </a>
-                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4">
+                                <a href="javascript:;" class="d-flex align-items-center text-muted mr-4" 
+                                onclick="showComment('#publication_{{$publication->id}}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square icon-md">
                                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                     </svg>
-                                    <p class="d-none d-md-block ml-2">Comment</p>
-                                </a>
-                                <a href="javascript:;" class="d-flex align-items-center text-muted">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-share icon-md">
-                                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                                        <polyline points="16 6 12 2 8 6"></polyline>
-                                        <line x1="12" y1="2" x2="12" y2="15"></line>
-                                    </svg>
-                                    <p class="d-none d-md-block ml-2">Share</p>
+                                    <p class="d-none d-md-block ml-2"><span id="n_comments_{{$publication->id}}">{{ count($publication->comments)}}</span> comentarios</p>
                                 </a>
                             </div>
                         </div>
+                        <div class="card-commets" id="publication_{{$publication->id}}">
+                            <div class="input-comment">
+                                <input type="text" placeholder="Escribe un comentario..." name="description" 
+                                id="input_comment_{{$publication->id}}" 
+                                onkeyup="registerComment(event,'#input_comment_{{$publication->id}}',{{$publication->id}})">
+                            </div>
+                            <div id="body_comment_{{$publication->id}}">
+                                @foreach($publication->comments as $comment)
+                                    <div id="comment_{{$comment->id}}">
+                                        <div class="content d-flex mb-2" >
+                                            <img src="{{asset('assets/images/avtar/3.jpg')}}" alt="">
+                                            <div class="comment-text">
+                                                <h4 class="name-user">{{$comment->user->name}}</h4>
+                                                <p class="description" contenteditable="false" 
+                                                onkeyup="updateComment(event,{{$comment->id}},'#comment_{{$comment->id}} .description')">
+                                                {{$comment->description}}</p>
+                                            </div>
+                                        </div>
+                                        @if(Auth::user()->role == 3 || Auth::id() == $comment->id_user)
+                                            <div class="d-flex options">
+                                                <p class="option_edit_{{$comment->id}}"
+                                                onclick="prepareComment('#comment_{{$comment->id}} .description')">Editar</p>
+                                                <p class="option_delete_{{$comment->id}}" 
+                                                onclick="deleteComment({{$comment->id}},'#comment_{{$comment->id}}',{{$publication->id}})">Eliminar</p>
+                                            </div>
+                                        @endif 
+                                    </div> 
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -237,5 +227,195 @@
                 })
             }
         });
+
+        function registerComment(e,element,id){
+            if ($("#input_comment_"+id+":focus") && (e.keyCode === 13)) {
+                let cons_ = '{!! route('comment.create') !!}';
+                var count =  parseInt($("#n_comments_"+id).text());
+                $.ajax({
+                    type: 'post',
+                    url : cons_,          
+                    data: {
+                            _token : '{{ csrf_token() }}',
+                            description : $(element).val(),
+                            publication_id : id,
+                            id_user : '{{Auth::id()}}'
+                    },
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+                    success: function(response) {
+                        $("#n_comments_"+id).text(count + 1);
+                        $("#body_comment_" + id)
+                        .prepend('<div id="comment_'+response['id']+'">'+
+                                    '<div class="content d-flex mb-2">'+
+                                        '<img src="{{asset("assets/images/avtar/3.jpg")}}" alt="">'+
+                                        '<div class="comment-text">'+
+                                            '<h4 class="name-user">'+'{{Auth::user()->name}}'+'</h4>'+
+                                            '<p class="description" contenteditable="false" onkeyup="updateComment(event,'+response['id']+',`#comment_'+response['id']+' .description`)">'+$(element).val()+'</p>'+
+                                        '</div>'+
+                                    '</div>'+
+                                    '<div class="d-flex options">'+
+                                        '<p class="option_edit_'+response['id']+'"'+
+                                        'onclick="prepareComment(`#comment_'+response['id']+' .description`)">Editar</p>'+
+                                        '<p class="option_delete_'+response['id']+'"'+
+                                        'onclick="deleteComment('+response['id']+',`#comment_'+response['id']+'`,'+response['publication_id']+')">Eliminar</p>'+
+                                    '</div>'+
+                                '</div>');
+                        toastr.success("Comentario enviado.");
+                        console.log(response['id']);
+                        $(element).val('');
+                    },
+                    error: function(response) {
+                        toastr.error('Ocurrio un error inesperado.');
+                    }
+                });
+            }
+        }
+
+        function showComment(element){
+            if($(element).hasClass('show')){
+                $(element).removeClass('show');
+                return
+            }
+            $(element).addClass('show');
+        }
+
+        function deleteComment(id,element,id_publication){
+            var count =  parseInt($(element + " .n_comments").text());
+            var count =  parseInt($("#n_comments_"+id_publication).text());
+            $.confirm({
+                icon: 'fa fa-question',
+                theme: 'modern',
+                animation: 'scale',
+                title: '¿Está seguro de eliminar este comentario?',
+                content: '<div>Esté registro se eliminará permanentemente.</div>',
+                buttons: {
+                    Confirmar: function () {
+                        $.ajax({
+                            type: 'post',
+                            url: '{{route('comment.delete')}}',
+                            data: {
+                                _token : '{{ csrf_token() }}',
+                                id : id
+                            },
+                            dataType: 'json',
+                            beforeSend: function() {
+                            },
+                            complete: function() {
+                            },
+                            success: function(response) {
+                                $(element).remove();
+                                $("#n_comments_"+id_publication).text(count - 1);
+                                toastr.success("Comentario eliminado correctamente.");
+                            },
+                            error: function(response) {
+                                toastr.error(response);
+                            }
+                        });
+                    },
+                    Cancelar: function () {
+                    
+                    }
+                }
+            });  
+        }
+
+        function prepareComment(element){
+            let input = $(element).attr('contenteditable');
+            if(input == 'true'){
+                $(element).attr('contenteditable','false');
+                $(element).removeClass('focus');
+                return
+            }
+            $(element).attr('contenteditable','true');
+            $(element).addClass('focus');
+            $(element).focus();
+        }
+
+        function updateComment(e,id,element){
+            if ($(element+":focus") && (e.keyCode === 13)) {
+                $(element).attr('contenteditable','false');
+                let cons_ = '{!! route('comment.update') !!}';
+                let value = $(element).text();
+                $.ajax({
+                    type: 'post',
+                    url : cons_,          
+                    data: {
+                            _token : '{{ csrf_token() }}',
+                            description : value,
+                            id : id
+                    },
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+                    success: function(response) {
+                        toastr.success("Comentario actualizado correctamente.");
+                        $(element).text(value.trim());
+                        $(element).removeClass('focus');
+                        },
+                    error: function(response) {
+                        toastr.error('Ocurrio un error inesperado.');
+                    }
+                });
+            }
+        }
+
+        function registerLike(id,element){
+             let cons_ = '{!! route('like.create') !!}';
+             var count =  parseInt($(element + " > p").text());
+                $.ajax({
+                    type: 'post',
+                    url : cons_,          
+                    data: {
+                            _token : '{{ csrf_token() }}',
+                            publication_id : id
+                    },
+                    dataType: 'json',
+                    beforeSend: function() {
+                    },
+                    complete: function() {
+                    },
+                    success: function(response) {
+                        if(response == true || response == 'true'){
+                            $(element+" svg path").css('fill','red');
+                            $(element+" svg path").css('stroke','red');
+                            $(element + " > p").text(count + 1);
+                            toastr.success('Me gusta enviado');
+                            return
+                        }
+                        $(element + "> p").text(count - 1);
+                        $(element+" svg path").css('fill','#fff');
+                        $(element+" svg path").css('stroke','currentColor');
+                    },
+                    error: function(response) {
+                        toastr.error('Ocurrio un error inesperado.');
+                    }
+                });
+        }
+
+        function liked(){
+            $publications = <?php echo json_encode($publications); ?>;
+            $user = '{!! Auth::id() !!}'
+            $.each( $publications, function(index,$publication){
+                let objIndex = $publication['likes'].findIndex((obj => obj.user_id == $user));
+                if (objIndex != -1) {
+                    let publication_id = $publication['likes'][objIndex]['publication_id'];
+                    let element = $("#like_" + publication_id+" svg path");
+                    element.css('fill','red');
+                    element.css('stroke','red');
+                }
+            });
+            //console.log($publications['likes']);
+        }
+
+        $(document).ready( function () {
+            liked();
+        });
+
     </script>
 @endsection
