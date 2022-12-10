@@ -1,7 +1,8 @@
 @extends('dashboard.app')
+@if(Auth::user()->role == 1 || Auth::user()->role == 2)
 @section('content-dashboard')
-    <div class="content-title mb-3">
-        <h1 class="text-black title">Crear nuevo fanpage___</h1>
+    <div class="title-content mb-3">
+        <h3 class="text-black title">Crear nuevo fanpage___</h3>
     </div>
     <div class="card">
         <div class="card-body">
@@ -70,7 +71,8 @@
                 complete: function() {
                 },
                 success: function(response) {
-                    toastr.success(response.success);
+                    toastr.success('Se grabó satisfactoriamente');
+                    clearData();
                 },
                 error: function(response) {
                     toastr.error(response.error);
@@ -81,7 +83,19 @@
             })
         }
     });
+    function clearData(){
+            $('#name').val('');
+            $('#cover').val('');
+            $('#profile').val('');
+            $('#description').val('');
+            $('#address').val('');
+            $('#website').val('');
+            $('#email').val('');
+            $('#modalEdit').val('');         
+            $('#method').val('1');                     
+        }    
   </script>
-
-  <!-- Limpiar formulario -->
 @endsection
+@else
+    <h4>No tienes permiso para ingresar a esta pagina.</h4>
+@endif

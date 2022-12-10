@@ -5188,7 +5188,10 @@ table tbody .border-bottom-warning td {
       border-bottom: 1px solid #e6edef;
       margin-bottom: 20px; }
       .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .sidebar-user img {
-        border: 10px solid rgba(36, 105, 92, 0.2); }
+        border: 10px solid rgba(36, 105, 92, 0.2);
+        width: 90px;
+        height: 90px; 
+      }
       .page-wrapper.compact-wrapper .page-body-wrapper header.main-nav .sidebar-user .setting-primary {
         position: absolute;
         top: 30px;

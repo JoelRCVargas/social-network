@@ -1,4 +1,5 @@
 @extends('dashboard.app')
+@if(Auth::user()->role == 1 || Auth::user()->role == 2)
 @section('content-dashboard')
     <div class="container">
         <input type="hidden"  id="method" value="0">
@@ -245,4 +246,6 @@
            
   </script>
 @endsection
-
+@else
+    <h4>No tienes permiso para ingresar a esta pagina.</h4>
+@endif

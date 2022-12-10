@@ -45,10 +45,11 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <!-- Toaster -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
+    @yield('styles')
+
      <!-- layouts and fontawesome -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/layouts.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    
   </head> 
   <body>
     <!-- Loader starts-->
@@ -68,7 +69,7 @@
             <div class="dark-logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{asset('assets/images/logo/dark-logo.png')}}" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
-          <div class="left-menu-header col">
+          <!-- <div class="left-menu-header col">
             <ul>
               <li>
                 <form class="form-inline search-form">
@@ -78,7 +79,7 @@
                 </form><span class="d-sm-none mobile-search search-bg"><i class="fa fa-search"></i></span>
               </li>
             </ul>
-          </div>
+          </div> -->
           <div class="nav-right col pull-right right-menu p-0">
             <ul class="nav-menus">
               <li>
@@ -119,7 +120,8 @@
       <div class="page-body-wrapper sidebar-icon">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle m-auto" src="{{asset('assets/images/dashboard/1.png')}}" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a>
+          <img class="img-90 rounded-circle m-auto" src="{{asset('assets/user/'.Auth::user()->photo)}}" alt="">
             <a href="#user">
               <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6></a>
              
@@ -143,12 +145,27 @@
                   </li>
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>Admistrar</h6>
+                      <h6>Inicio</h6>
                     </div>
                   </li>
-                  @if(Auth::user()->role == 1 || Auth::user()->role ==2)
+                  <li><a href="{{route('home')}}" class="nav-link">Dashboard</a></li>
+                  <li><a href="{{route('admin.user.adminuserprepare')}}" class="nav-link">Mi perfil</a></li>
+                  @if(Auth::user()->role == 1 || Auth::user()->role ==2)                 
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h6>Fanpages</h6>
+                    </div>
+                  </li>
                     <li><a href="{{route('admin.formpage.create')}}" class="nav-link">Crear nuevo fanpage</a></li>
                     <li><a href="{{route('admin.fanpagelist')}}" class="nav-link">Lista de fanpages</a></li>
+                  @endif
+                  @if(Auth::user()->role ==2)
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h6>Usuarios</h6>
+                    </div>
+                  </li>
+                  <li><a href="{{route('admin.user')}}" class="nav-link">Todos los usuarios</a></li>
                   @endif
                   <li class="sidebar-main-title">
                     <div>
@@ -162,7 +179,6 @@
                     </div>
                   </li>
                   <li><a href="{{route('referrals')}}" class="nav-link">Mis referidos</a></li>
-                  <li><a href="{{route('referrals.link')}}" class="nav-link">Mi link</a></li>
                 </ul>
               </div>
               <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
@@ -171,6 +187,8 @@
         </header>
         <!-- Page Sidebar Ends-->
         <div class="page-body">
+           	<!--@yield('content')-->
+   
           <!--Yield content-->
           @yield('content-dashboard')
           <!--End tield content-->

@@ -28,3 +28,4 @@ class UserFanPageListController extends Controller
         )->toJson();
     }
 }
+ 

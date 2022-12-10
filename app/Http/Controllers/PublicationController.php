@@ -33,7 +33,7 @@ class PublicationController extends Controller
                     'image as image',         
                     'description as description'
                 ])
-        )->toJson();
+        )->toJson(); 
 
     }
     public function preparePublicationById(Request $request){
@@ -52,7 +52,7 @@ class PublicationController extends Controller
             if($request->hasFile('image')){
                 //cover
                 $image=$request->file('image');
-                $image_name ='_'.rand().'_'.$cover->getClientOriginalName();
+                $image_name ='_'.rand().'_'.$image->getClientOriginalName();
                 //Upload file
                 $image->move(public_path('assets/publication'),$image_name);
                 //Delete file
