@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/user/listar', [App\Http\Controllers\HomeController::class, 'listUser'])->name('home.user.list');
+Route::get('/home/user/listarf', [App\Http\Controllers\HomeController::class, 'listFanpage'])->name('home.user.listf');
 
 //Routers fanpage
 Route::get('/fanpage/{id}', [App\Http\Controllers\FanpageController::class, 'index'])->name('admin.fanpage');
@@ -45,6 +47,23 @@ Route::get('/admin/publication/listar', [App\Http\Controllers\PublicationControl
 Route::post('/admin/publication/listar', [App\Http\Controllers\PublicationController::class, 'preparePublicationById'])->name('admin.publication.prepare');
 Route::post('/admin/publication/update', [App\Http\Controllers\PublicationController::class, 'updatePublication'])->name('admin.publication.update');
 Route::get('/admin/publication/delete', [App\Http\Controllers\PublicationController::class, 'deletePublication'])->name('admin.publication.delete');
+
+//Routers users
+Route::get('/admin/user', [App\Http\Controllers\UserController::class, 'index'])->name('admin.user');
+Route::get('/admin/user/listar', [App\Http\Controllers\UserController::class, 'listUser'])->name('admin.user.list');
+Route::post('/admin/user/listar', [App\Http\Controllers\UserController::class, 'prepareUserById'])->name('admin.user.prepare');
+Route::post('/admin/user/update', [App\Http\Controllers\UserController::class, 'updateUser'])->name('admin.user.update');
+
+//Routers adminusers
+
+Route::get('/admin/user/adminuserlistar', [App\Http\Controllers\AdminUserController::class, 'prepareAdminUserById'])->name('admin.user.adminuserprepare');
+Route::post('/admin/user/adminuserupdate', [App\Http\Controllers\AdminUserController::class, 'updateAdminUser'])->name('admin.user.adminuserupdate');
+
+//change pwd
+Route::post('/user/password/update', [App\Http\Controllers\AdminUserController::class, 'updatePwd'])->name('admin.user.password.update');
+
+
+
 
 
 //referrals routes

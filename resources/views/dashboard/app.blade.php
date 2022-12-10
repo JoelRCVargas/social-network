@@ -43,18 +43,18 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/responsive.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-<<<<<<< HEAD
+
     <!-- Toaster -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     @yield('styles')
-=======
+
 
      <!-- layouts and fontawesome -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/layouts.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     
 
->>>>>>> formularios_fanpage
+
   </head> 
   <body>
     <!-- Loader starts-->
@@ -125,7 +125,8 @@
       <div class="page-body-wrapper sidebar-icon">
         <!-- Page Sidebar Start-->
         <header class="main-nav">
-          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a><img class="img-90 rounded-circle m-auto" src="{{asset('assets/images/dashboard/1.png')}}" alt="">
+          <div class="sidebar-user text-center"><a class="setting-primary" href="javascript:void(0)"><i data-feather="users"></i></a>
+          <img class="img-90 rounded-circle m-auto" src="{{asset('assets/user/'.Auth::user()->photo)}}" alt="">
             <a href="#user">
               <h6 class="mt-3 f-14 f-w-600">{{ Auth::user()->name }}</h6></a>
             <p class="mb-0 font-roboto">Usuario Gestor de Campaña</p>
@@ -143,7 +144,15 @@
                       <h6>Admistrar</h6>
                     </div>
                   </li>
-    
+                  <li><a href="{{route('admin.user')}}" class="nav-link">Usuarios</a></li>
+
+                  <li class="sidebar-main-title">
+                    <div>
+                      <h6>Mi info</h6>
+                    </div>
+                  </li>
+
+                  <li><a href="{{route('admin.user.adminuserprepare')}}" class="nav-link">Informacion</a></li>
                   <li class="dropdown"><a class="nav-link menu-title" href="javascript:void(0)"><i data-feather="home"></i><span>Fanpage</span></a>
                     <ul class="nav-submenu menu-content">
                       <li><a href="{{route('admin.formpage.create')}}">Crear nuevo fanpage</a></li>                    
@@ -172,6 +181,8 @@
         </header>
         <!-- Page Sidebar Ends-->
         <div class="page-body">
+           	<!--@yield('content')-->
+   
           <!--Yield content-->
           @yield('content-dashboard')
           <!--End tield content-->

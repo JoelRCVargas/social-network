@@ -32,5 +32,5 @@ class FanpageController extends Controller
     public function removeReferredUsersByIdAndToken(Request $request){
         DB::table('referred_users')->where('id_user','=', Auth::id())->where('referral_token','=',$request->token)->delete();;
     }
-
+ 
 }

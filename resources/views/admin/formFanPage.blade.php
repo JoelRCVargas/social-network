@@ -70,7 +70,8 @@
                 complete: function() {
                 },
                 success: function(response) {
-                    toastr.success(response.success);
+                    toastr.success('Se grabó satisfactoriamente');
+                    clearData();
                 },
                 error: function(response) {
                     toastr.error(response.error);
@@ -81,7 +82,16 @@
             })
         }
     });
+    function clearData(){
+            $('#name').val('');
+            $('#cover').val('');
+            $('#profile').val('');
+            $('#description').val('');
+            $('#address').val('');
+            $('#website').val('');
+            $('#email').val('');
+            $('#modalEdit').val('');         
+            $('#method').val('1');                     
+        }    
   </script>
-
-  <!-- Limpiar formulario -->
 @endsection

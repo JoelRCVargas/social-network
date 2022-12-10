@@ -1,6 +1,5 @@
 @extends('dashboard.app')
 @section('content-dashboard')
-
 <input type="hidden" value="0" id="method">
         <div class="modal fade" data-toggle="validator" id="modalEdit" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
@@ -11,31 +10,26 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="frm_fanpage" class="modal-body" enctype="multipart/form-data">
+                    <form id="frm_fanpage" class="modal-body" >
                        {{csrf_field() }}
                         <div class="form-group">
                             <input type="hidden" id="id" name="id">
 
-                            <label class="form-control-label" for="name">{{ __('Nombre fanpage') }}</label>
+                            <label class="form-control-label" for="name">{{ __('Nombre') }}</label>
                             <input type="text" name="name" id="name" class="form-control" required autofocus>
-
-                            <label class="form-control-label" for="description">{{ __('Descripcion') }}</label>
-                            <input type="text" name="description" id="description" class="form-control" required autofocus>
-
-                            <label class="form-control-label" for="address">{{ __('Direccion') }}</label>
-                            <input type="text" name="address" id="address" class="form-control" required autofocus>
-                            
-                            <label class="form-control-label" for="website">{{ __('Sitio web') }}</label>
-                            <input type="text" name="website" id="website" class="form-control" required autofocus>
 
                             <label class="form-control-label" for="email">{{ __('Email') }}</label>
                             <input type="text" name="email" id="email" class="form-control" required autofocus>
 
-                            <label class="form-control-label" for="cover">{{ __('Foto de portada') }}</label>
-                            <input type="file" name="cover" id="cover" class="form-control"  autofocus>
+                            <label class="form-control-label" for="role">{{ __('Rol') }}</label>
+                            <select name="role" id="role" class="form-control" required autofocus>
+                            <option value="0">usuario</option>
+                            <option value="1">administrador</option>
+                     
+                            </select>
 
-                            <label class="form-control-label" for="profile">{{ __('Foto de perfil') }}</label>
-                            <input type="file" name="profile" id="profile" class="form-control"  autofocus>
+                            <label class="form-control-label" for="photo">{{ __('Foto') }}</label>
+                            <input type="file" name="photo" id="photo" class="form-control"  autofocus>
             
                         </div>
                     <div class="modal-footer">
@@ -53,7 +47,7 @@
             <div class="row">
                 <div class="col-xl-12 col-lg-6">
                     <div class="title-content mb-3">
-                        <h3 class="text-black">Mis fanpages</h3>
+                        <h3 class="text-black">Usuarios</h3>
                     </div>
                     <div class="card card-stats mb-2 mb-xl-0">
                         <div class="card-body">
@@ -71,14 +65,11 @@
                                         <thead class="thead-light">
                                             <tr>
                                                 <th scope="col">id</th>
-                                                <th scope="col">Portada</th>
-                                                <th scope="col">Perfil</th>
-                                                <th scope="col">descripcion</th>
-                                                <th scope="col">direccion</th>
-                                                <th scope="col">sitio web</th>
-                                                <th scope="col">email</th>
+                                                <th scope="col">Nombre</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Rol</th>
+                                                <th scope="col">photo</th>
                                                 <th scope="col">opciones</th>
-                                                <th scope="col">publicaciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -118,7 +109,7 @@
                 ],
                 'ajax': {
                     'type': 'get',
-                    'url' : '{{route('admin.fanpage.list')}}',
+                    'url' : '{{route('admin.user.list')}}',
                     'data': function(d) {
                         d._token = '{{ csrf_token() }}';
                         d.name = $('#search').val();
@@ -126,37 +117,24 @@
                 },
                 "columns": [
                     { data: "id" },
-                    { data: "cover",
+                    { data: "name"},
+                    { data: "email" },
+                    {data:'role'},
+                    { data: "photo",
                         render:function(data,type,full,meta){
-                            return "<div class='container-img' style='width: 100px;'><img src='{{URL::to('/')}}/assets/fanpage/"+data+"' width='70' class='thumbnail'><div/>";
+                            return "<div class='container-img' style='width: 100px;'><img src='{{URL::to('/')}}/assets/user/"+data+"' width='70' class='thumbnail'><div/>";
                         },
                         roderable:false
                     },
-                    { data: "profile",
-                        render:function(data,type,full,meta){
-                            return "<div class='container-img' style='width: 100px;'><img src='{{URL::to('/')}}/assets/fanpage/"+data+"' width='70' class='thumbnail'><div/>";
-                        },
-                        roderable:false
-                    },
-                    { data: "description"},
-                    { data: "address" },
-                    {data:'website'},
-                    { data: 'email' },
                     { data: "id",
                         render:function(data,type,full,meta){
                             return "<div class='description-table'>"+data+"<div/>";
                         },
                         roderable:false
                     },
-                    { data: "id",
-                        render:function(data,type,full,meta){
-                            return "<a class='btn btn-primary' href='{{URL::to('/')}}/admin/publication/fanpage?id="+data+"'>Publicaciones<a/>";
-                        },
-                        roderable:false
-                    }
                 ],
                     "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-                        $(nRow).find('td:eq(7)').html('' +
+                        $(nRow).find('td:eq(5)').html('' +
                             '<button type="button" class="edit btn btn-primary btn-sm" id="btnAdd"  data-toggle="modal" data-target="#modalEdit"><i class="fa fa-edit"></i></button>' +
                             '<button type="button" class="delete btn btn-danger btn-sm m-lg-2" ><i class="fa fa-trash"></i></button>');
                     }
@@ -165,8 +143,8 @@
             }
 
             
-   //Obtener registros, para el formulario
-            $('#table').on( 'click', '.edit', function () {
+             //Obtener registros, para el formulario
+             $('#table').on( 'click', '.edit', function () {
                 var data = _list().row( $(this).parents('tr') ).data();
                 
                 if(data == undefined) {
@@ -177,30 +155,27 @@
                 }
                 $("#id").val(data['id']);
 
-                $.post('{{route('admin.fanpage.prepare')}}',
+                $.post('{{route('admin.user.prepare')}}',
                     'id=' + data['id'] +
                     '&_token=' + '{{ csrf_token() }}', function(response) {
-                        $('#description').val(response['description']);
                         $('#name').val(response['name']);
-                        $('#address').val(response['address']);
-                        $('#website').val(response['website']);
                         $('#email').val(response["email"]);
+                        $('#role').val(response["role"]);
                         $('#modalEdit').modal('show');
-                        $('#cover').val(null);
+                        $('#photo').val(null);
                         $('#method').val('1'); 
                     }, 'json');
                 $("html, body").animate({ scrollTop: 0 }, 600);
             });
-            
-
-              //Registrar
-              $('#btnAdd').on( 'click', function (){
+  
+             //Registrar
+             $('#btnAdd').on( 'click', function (){
                 clearData();
             $('#method').val('0');
             });
 
             $('#frm_fanpage').on('submit', function (e) {
-                $("btnSubmit").prop('disabled', true);
+                $("btnAdd").prop('disabled', true);
                 if(e.isDefaultPrevented()){
                     toastr.warning('Debe llenar los campos obligatorios');
                 }else{
@@ -211,7 +186,7 @@
                         cons_ = '{!! route('admin.formpage.create') !!}';
                        
                     }else{
-                        cons_ = '{!! route('admin.fanpage.update') !!}';
+                        cons_ = '{!! route('admin.user.update') !!}';
                        
                     }
                     $.ajax({
@@ -229,7 +204,7 @@
                         },
                         success: function(response) {
                             $("#table").DataTable().ajax.reload();
-                            $('#modalRegister').modal('hide');
+                            $('#modalEdit').modal('hide');
                             toastr.success('Se grabó satisfactoriamente el cliente');
                         },
                         error: function(response) {
@@ -263,7 +238,7 @@
                          Confirmar: function () {
                             $.ajax({
                                 type: 'get',
-                                url: '{{route('admin.fanpage.delete')}}',
+                                url: '{{route('admin.user.update')}}',
                                 data: {
                                     _token: '{{ csrf_token() }}',
                                     id: $('#id').val()
@@ -300,5 +275,6 @@
             });
 
     </script>}
-    <!-- Limpiar formulario -->
+    
+    
 @endsection
