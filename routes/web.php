@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/home/user/listar', [App\Http\Controllers\HomeController::class, 'listUser'])->name('home.user.list');
 Route::get('/home/user/listarf', [App\Http\Controllers\HomeController::class, 'listFanpage'])->name('home.user.listf');
+Route::get('/home/fanpage/by/name', [App\Http\Controllers\HomeController::class, 'searchByLike'])->name('home.fanpage.like');
 
 //Routers fanpage
 Route::get('/fanpage/{id}/{name}', [App\Http\Controllers\FanpageController::class, 'index'])->name('admin.fanpage');

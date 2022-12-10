@@ -69,17 +69,20 @@
             <div class="dark-logo-wrapper"><a href="index.html"><img class="img-fluid" src="{{asset('assets/images/logo/dark-logo.png')}}" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle" data-feather="align-center" id="sidebar-toggle"></i></div>
           </div>
-          <!-- <div class="left-menu-header col">
-            <ul>
-              <li>
-                <form class="form-inline search-form">
-                  <div class="search-bg"><i class="fa fa-search"></i>
-                    <input class="form-control-plaintext" placeholder="Buscar aquí.....">
-                  </div>
-                </form><span class="d-sm-none mobile-search search-bg"><i class="fa fa-search"></i></span>
+          <div class="left-menu-header col">
+            <ul class="w-100" style="position:relative;">
+              <li class="w-100">
+                 <div class="d-flex w-100">
+                    <div class="search-bg d-flex w-100" style="align-items: center;">
+                      <i class="fa fa-search"></i>
+                      <input class="form-control-plaintext pl-2" placeholder="Buscar aquí....." id="input_name" onkeyup="search(event)">
+                    </div>
+                 </div>
               </li>
+              <div id="content-search">
+              </div>
             </ul>
-          </div> -->
+          </div>
           <div class="nav-right col pull-right right-menu p-0">
             <ul class="nav-menus">
               <li>
@@ -262,6 +265,50 @@
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <!-- Toaster -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+      function search(e){
+        if ($("#input_name:focus") && (e.keyCode === 13)) {
+          var cons_ = '{!! route('home.fanpage.like') !!}';
+          if($('#input_name').val() == null || $.trim($('#input_name').val()) == ''){
+            $("#content-search").empty();
+            return;
+          }
+          $("#content-search").empty();
+          $.ajax({
+              type: 'get',
+              url : cons_,          
+              data:{
+                _token : '{{ csrf_token() }}',
+                name   : $('#input_name').val()
+              },
+              datatype: 'json',
+              beforeSend: function() {
+              },
+              complete: function() {
+              },
+              success: function(response) {
+                  console.log(response);
+                  $.each(response, function(index,value){
+                      $("#content-search").append(
+                        '<div class="content-search">'+
+                          '<a href="{{ URL::to('/') }}'+'/fanpage/'+value['id']+'/'+value['name']+'">'+
+                            '<img src="{!! asset("assets/fanpage/'+value['profile']+'") !!}" alt="">'+
+                            '<div class="description">'+
+                              '<p class="name">'+value['name']+'</p>'+
+                              '<p class="description">'+value['description']+'</p>'+  
+                            '</div>'+
+                          '</a>'+
+                        '</div>'
+                    );
+                  });
+                  
+              },
+              error: function(response) {
+              }
+          });
+        }
+      }
+    </script>
     <!-- Scripts js -->
     @yield('scripts')
   </body>

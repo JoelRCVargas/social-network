@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fanpage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
@@ -65,5 +66,8 @@ class HomeController extends Controller
         )->toJson();
     }
 
-  
+    public function searchByLike(Request $request){
+        $fanpages = Fanpage::where('name','like','%'.$request->name.'%')->get();
+        return response()->json($fanpages);
     }
+}
