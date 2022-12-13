@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Models\Comment;
+use App\Models\Like;
+
 
 class PublicationController extends Controller
 {
@@ -105,6 +108,10 @@ class PublicationController extends Controller
 
     public function deletePublication(Request $request){
         $publication = Publication::find($request->get('id'));
+        $like = Like::where('publication_id','=',$request->get('id'));
+        $comment = Comment::where('publication_id','=',$request->get('id'));
+        $like->delete();
+        $comment->delete();
         //Delete file
         File::delete(public_path('assets/publication/'.$publication->image));
        

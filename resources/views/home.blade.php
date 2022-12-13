@@ -140,9 +140,9 @@
                 @endif
             </div>
         </div>
-        @if(Auth::user()->role == 1 || Auth::user()->role == 2)
         <div class="container-fluid dashboard-default-sec">
             <div class="row">
+                @if(Auth::user()->role == 2)
                 <div class="col-xl-5 box-col-12 des-xl-100">
                     <div class="row">
                         <div class="container">
@@ -187,6 +187,8 @@
 
                     </div>
                 </div>
+                @endif
+                @if(Auth::user()->role == 1)
                 <div class="col-xl-7 box-col-12 des-xl-100 dashboard-sec">
                     <div class="card income-card">
                         <div class="card-header">
@@ -217,9 +219,9 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
-        @endif
     </div>
 </div>
 @endsection

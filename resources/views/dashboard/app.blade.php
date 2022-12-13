@@ -88,7 +88,7 @@
               <li>
                 <div class="mode"><i class="fa fa-moon-o"></i></div>
               </li>
-              <li class="onhover-dropdown"><i data-feather="message-square"></i>
+              <!-- <li class="onhover-dropdown"><i data-feather="message-square"></i>
                 <ul class="chat-dropdown onhover-show-div">
                   <li>
                     <div class="media"><img class="img-fluid rounded-circle me-3" src="{{asset('assets/images/user/4.jpg')}}" alt="">
@@ -100,7 +100,7 @@
                   </li>
                   <li class="text-center"> <a class="f-w-700" href="javascript:void(0)">See All     </a></li>
                 </ul>
-              </li>
+              </li> -->
               <li class="onhover-dropdown p-0">
                 <a class="btn btn-primary-light" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -161,15 +161,15 @@
                   </li>
                     <li><a href="{{route('admin.formpage.create')}}" class="nav-link">Crear nuevo fanpage</a></li>
                     <li><a href="{{route('admin.fanpagelist')}}" class="nav-link">Mis fanpages</a></li>
-                    <li><a href="{{route('superadmin')}}" class="nav-link">Lista de fanpages</a></li>
                   @endif
                   @if(Auth::user()->role ==2)
                   <li class="sidebar-main-title">
                     <div>
-                      <h6>Usuarios</h6>
+                      <h6>Administrar</h6>
                     </div>
                   </li>
                   <li><a href="{{route('admin.user')}}" class="nav-link">Todos los usuarios</a></li>
+                  <li><a href="{{route('superadmin')}}" class="nav-link">Todos los fanpages</a></li>
                   @endif
                   <li class="sidebar-main-title">
                     <div>
